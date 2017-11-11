@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './components/Nav';
 import List from './components/List';
 import Note from './components/Note';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
