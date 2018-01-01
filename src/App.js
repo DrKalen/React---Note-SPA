@@ -10,7 +10,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      showNote: false
+      showNote: false,
+      notes: []
     };
   }
 
@@ -22,7 +23,7 @@ class App extends Component {
 
   getNotes = () => {
     axios.get(urlFor('notes') )
-    .then((res) => console.log(res.data) )
+    .then((res) => this.setState({ notes: res.data }) )
     .catch((err) => console.log(err.response.data) );
   }
 
@@ -32,7 +33,13 @@ class App extends Component {
     return (
       <div className="App">
         <Nav toggleNote={this.toggleNote} showNote={showNote} />
-        { showNote ? <Note /> : <List getNotes={this.getNotes}/>}
+        { showNote ? 
+          <Note /> 
+          : 
+          <List 
+            getNotes={this.getNotes}
+            notes={notes}
+          />}
       </div>
     );
   }
