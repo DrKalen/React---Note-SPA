@@ -19,6 +19,11 @@ class App extends Component {
     });
   }
 
+  getNotes = () => {
+    axios.get('https://notesapi-kalenhammann.herokuapp.com/notes' )
+    .then((res) => console.log(res.data) )
+    .catch((err) => console.log(err.response.data) );
+  }
 
   render() {
     const { showNote } = this.state;
@@ -26,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav toggleNote={this.toggleNote} showNote={showNote} />
-        { showNote ? <Note /> : <List />}
+        { showNote ? <Note /> : <List getNotes={this.getNotes}/>}
       </div>
     );
   }
