@@ -24,11 +24,11 @@ class App extends Component {
   getNotes = () => {
     axios.get(urlFor('notes') )
     .then((res) => this.setState({ notes: res.data }) )
-    .catch((err) => console.log(err.response.data) );
+    .catch((err) => console.log('The data could not be fetched.') );
   }
 
   render() {
-    const { showNote } = this.state;
+    const { showNote, notes } = this.state;
     
     return (
       <div className="App">
