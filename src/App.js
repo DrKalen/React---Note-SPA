@@ -35,6 +35,13 @@ class App extends Component {
     .catch((err) => console.log('The data could not be fetched.') );
   }
 
+  deleteNote = (id) => {
+    const newNotesState = this.state.notes.filter((note) => note.id !== id );
+    axios.delete(urlFor(`notes${id}`))
+    .then((res) => this.setState({ notes: newNotesState }))
+    .catch((err) => console.log(err.response.data) );
+  }
+
   performSubmissionRequest = (data, id) => {
     if (id) {
       return axios.patch(urlFor(`notes/${id}`), data);
@@ -65,6 +72,7 @@ class App extends Component {
             getNotes={this.getNotes}
             notes={notes}
             getNote={this.getNote}
+            deleteNote={this.deleteNote}
           />}
       </div>
     );
