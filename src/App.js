@@ -29,13 +29,13 @@ class App extends Component {
   getNotes = () => {
     axios.get(urlFor('notes') )
     .then((res) => this.setState({ notes: res.data }) )
-    .catch((err) => console.log('The data could not be fetched.') );
+    .catch((err) => console.log(err.response.data) );
   }
 
   getNote = (id) => {
     axios.get(urlFor(`notes/${id}`))
     .then((res) => this.setState({ note: res.data, showNote: true }) )
-    .catch((err) => console.log('The data could not be fetched.') );
+    .catch((err) => console.log(err.response.data) );
   }
 
   deleteNote = (id) => {
